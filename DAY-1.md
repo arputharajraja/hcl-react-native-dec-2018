@@ -30,8 +30,6 @@ c:\Users\Admin> cd ShoppingApp
 c:\Users\Admin\ShoppingApp> expo start
 
 
-
-
 For Android,
   	go to play store
     	 Expo 
@@ -39,11 +37,3 @@ For Android,
 for iOS,
   	go to App Store
     	search for expo
-
-----
-WIFI: sense
-password: react2017
-
---
-WIFI: iPhone
-password: react2017

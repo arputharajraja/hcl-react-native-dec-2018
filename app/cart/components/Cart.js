@@ -1,10 +1,10 @@
 // app/cart/components/Cart.js
-import React from "react";
+import React, {Component} from "react";
 
 import {View, Text, Button, StyleSheet} from "react-native";
 
-// import CartList from "./CartList";
-// import CartSummary from "./CartSummary";
+import CartList from "./CartList";
+import CartSummary from "./CartSummary";
 
 export default class Cart extends React.Component {
  
@@ -15,7 +15,7 @@ export default class Cart extends React.Component {
         // ownership of data == by Cart
         // update should happen in the parent component
         this.state = {
-            items: [{name: 'p1', qty: 1, price: 100, id: 10}],
+            items: [{name: 'p1', qty: 8, price: 100, id: 10}],
             // derived from items
             amount: 0,
             totalItems: 0,
@@ -56,6 +56,14 @@ export default class Cart extends React.Component {
         }
        
         // TODO
+        // immutable
+        const items = [...this.state.items, item];
+        this.setState({
+            items
+        });
+
+        // BUG, async this.recalculate(this.state.items);
+        this.recalculate(items);
     }
 
 
@@ -71,6 +79,11 @@ export default class Cart extends React.Component {
 
     empty = () => {
        //TODO
+       this.setState({
+           items: []
+       })
+
+       this.recalculate([]);
     }
 
     // dummy method, to explain the side effect of render methods
@@ -79,6 +92,12 @@ export default class Cart extends React.Component {
             flag: !this.state.flag
         });
     }
+
+
+    componentWillMount() {
+        this.recalculate(this.state.items);
+    }
+
 
 
     // first time on creation cycle, we cannot stop
@@ -107,7 +126,13 @@ return (
                         onPress={this.empty}
             /> 
 
+            <CartSummary amount={this.state.amount}
+                         totalItems={this.state.totalItems} />
             
+
+            <CartList items={this.state.items} />
+
+           
 
         </View>
 )

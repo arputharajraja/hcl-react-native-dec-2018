@@ -10,6 +10,14 @@ export default class CartItem extends Component {
         super(props);
         console.log("cart item created", props.item.id);
     }
+
+    componentDidMount() {
+        console.log('CartItem did mount ' + this.props.item.id);
+    }
+
+    componentWillUnmount() {
+        console.log('CartItem will unmount ' + this.props.item.id);
+    }
  
     render() {
         // deconstruct

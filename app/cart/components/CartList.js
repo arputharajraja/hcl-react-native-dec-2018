@@ -1,7 +1,7 @@
 // app/cart/components/CartList.js
 import React, {Component} from "react";
 
-import {View, Text} from "react-native";
+import {View, Text, ScrollView} from "react-native";
 
 import CartItem from "./CartItem";
 
@@ -22,7 +22,14 @@ export default class CartList extends Component {
             <View>
                 <Text>Cart List - {items.length}</Text>
  
-         
+                <ScrollView>
+                    {
+                        items.map(item => (
+                            <CartItem item={item}
+                                      key={item.id} />
+                        ))
+                    }
+                </ScrollView>
 
 
             </View>

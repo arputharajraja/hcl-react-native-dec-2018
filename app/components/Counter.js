@@ -22,7 +22,7 @@ export class Counter extends React.Component {
         console.log('increment called');
         console.log('counter before ', this.state.counter);
     
-        // NOT A GOOD PRACTICE
+        // NOT A GOOD PRACTICE, MUTATING STATE directly
         this.state.counter++;
 
         console.log('counter after', this.state.counter);
@@ -31,6 +31,21 @@ export class Counter extends React.Component {
         // react keyword
         // force react framework to call render method
         this.forceUpdate();
+    }
+
+    decrement = () => {
+        console.log('decrement called');
+        console.log('counter before ', this.state.counter);
+        // GOOD
+        // react keyword
+        // accept new state as argument
+        // merge the new state with existing state
+        // trigger the render function
+        // async method
+        this.setState({
+            counter: this.state.counter - 1
+        });
+        console.log('counter after', this.state.counter);
     }
 
 
@@ -46,14 +61,39 @@ export class Counter extends React.Component {
         //this.props.children is a keyword
 
         console.log('Counter render called');
+        // JSX - JavaScript + XML
+        // Babel convert JSX to JS
          return (
             <View>
                 <Text>Counter</Text>
                 <Text>Start Value {this.props.startValue}</Text>
             
                 <Text>Counter value {this.state.counter}</Text>
+
+
+
+
                 <Button onPress={this.increment}
                         title="Increment" />
+
+                <Button onPress={this.decrement}
+                                        title="Decr" />
+
+
+                { this.state.counter % 2 == 1 && 
+                    <Text> Counter is odd number</Text>
+                }
+
+                { this.state.counter % 2 == 0 &&
+                <Text> Counter is even number</Text>
+                }
+
+                {
+                    this.state.counter % 2 == 0?
+                        <Text>EVEN</Text>
+                        : <Text>ODD</Text>
+                }
+
             </View>
         );
     }

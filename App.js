@@ -8,13 +8,21 @@ import {Address} from './app/components/Address';
 
 // default import, without brace
 import Cart from './app/cart/components/Cart';
+import Checkout from './app/cart/components/Checkout';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
 
-        <Cart />
+        <Checkout />
+
+        {/* <Address address={ {city: 'BLR', state: 'KA'} } >
+          <Text>Contact: 9:30 AM to 6:00 PM</Text>
+          <Text>Mon-Sat</Text>
+         </Address>
+
+        <Cart /> */}
                 
         {/*
         <Counter startValue={0} />
@@ -41,6 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: 50
     // alignItems: 'center',
     // justifyContent: 'center',
   },

@@ -1,12 +1,13 @@
 // app/cart/components/CartList.js
-import React, {Component} from "react";
+import React, {Component, PureComponent} from "react";
 
 import {View, Text, ScrollView} from "react-native";
 
 import CartItem from "./CartItem";
 
 // Pure vs Component
-export default class CartList extends Component {
+// PureComponent already implements shouldComponentUpdate
+export default class CartList extends PureComponent {
     constructor(props) {
         super(props);
          
@@ -26,7 +27,12 @@ export default class CartList extends Component {
                     {
                         items.map(item => (
                             <CartItem item={item}
-                                      key={item.id} />
+                                      key={item.id}
+                                      removeItem={this.props.removeItem}
+                                      updateItem={this.props.updateItem}
+                                      
+                                      
+                                      />
                         ))
                     }
                 </ScrollView>

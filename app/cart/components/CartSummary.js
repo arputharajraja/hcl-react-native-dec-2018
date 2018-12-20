@@ -26,8 +26,28 @@ export default class CartSummary extends React.Component {
         this.setState({discount});
     }
 
+    
     componentWillMount() {
         this.recalculate(this.props);
+    }
+
+    //return true -> calls render
+    // return false -> no render call
+    //when? whenever parent render called on update cycle, hanndle prop change
+    // when? whenever this.setState, to handle state change
+    // this is not called when you call this.forceUpdate
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('CartSummary should update');
+
+        if (nextProps.amount != this.props.amount ||
+            nextProps.totalItems != this.props.totalItems ||
+            nextState.discount != this.state.discount) {
+                console.log('shall call render');
+                return true;
+            }
+
+        console.log('no render');
+        return false;
     }
 
     // called on update cycle

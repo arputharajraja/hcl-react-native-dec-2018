@@ -58,6 +58,7 @@ export default class Cart extends React.Component {
         // TODO
         // immutable
         const items = [...this.state.items, item];
+         
         this.setState({
             items
         });
@@ -67,14 +68,40 @@ export default class Cart extends React.Component {
     }
 
 
+    // send removeItem function as props to CartItem
+    //child (CartItem) component does callback
     removeItem = (id) => {
         console.log('remove item ', id)
         // TODO
+
+        const items = this.state
+                      .items
+                      .filter(item => item.id != id);
+
+        this.setState({items});
+        this.recalculate(items);
+                      
     }
 
+
+    //callback
     updateItem = (id, qty) => {
         console.log("update ", id, qty);
          // TODO
+         // new array
+        const items = this.state.items
+                          .map (item => {
+                              if (item.id == id) {
+                                  // copy of the item
+                                const newItem = {...item, qty}
+                                return newItem;
+                              }
+
+                              return item;
+                          });
+
+        this.setState({items});
+        this.recalculate(items);
     }
 
     empty = () => {
@@ -130,7 +157,10 @@ return (
                          totalItems={this.state.totalItems} />
             
 
-            <CartList items={this.state.items} />
+            <CartList items={this.state.items} 
+                      removeItem={this.removeItem}
+                      updateItem={this.updateItem}
+            />
 
            
 

@@ -40,6 +40,7 @@ export class Counter extends React.Component {
         // react keyword
         // accept new state as argument
         // merge the new state with existing state
+        // calls shouldCompnentUpdate [true/false]
         // trigger the render function
         // async method
         this.setState({

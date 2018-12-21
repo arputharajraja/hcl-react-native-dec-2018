@@ -7,14 +7,29 @@ import {View, Text, Button} from 'react-native';
 // export Counter so that we can import in App.js
 export class Counter extends React.Component {
 
+    static navigationOptions = {
+        title: 'Counter'
+    }
+
     constructor(props) {
         super(props); // MUST   
 
         // react keyword
         // manipulate the state data
         this.state = {
-            counter: props.startValue
+            counter: props.startValue || 0
         }
+    }
+
+    componentDidMount() {
+        this.timer = setInterval( () => {
+            this.decrement();
+            console.log('timer called');
+        }, 2000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
 

@@ -8,6 +8,10 @@ import CartSummary from "./CartSummary";
 
 export default class Cart extends React.Component {
  
+    static navigationOptions = {
+        title: 'CART'
+    }
+
     constructor(props) {
         super(props);
         console.log("cart cons ", props);

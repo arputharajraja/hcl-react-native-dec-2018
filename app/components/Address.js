@@ -3,11 +3,13 @@ import React  from 'react';
 import {View, Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import {styles} from './Styles';
+import {styles as SpecificStyle} from './SpecificStyles'
 // functional component/view component
 
 // component
 const Phone = (props) => (
-    <View>
+    <View style={styles.phone}>
         <Ionicons name="md-call" 
                          size={24} 
                          color="grey"
@@ -17,7 +19,7 @@ const Phone = (props) => (
 );
 
 const Email = (props) => (
-    <View>
+    <View style={styles.email}>
          <Ionicons name="md-mail" 
                          size={24} 
                          color="grey"
@@ -40,7 +42,7 @@ export function Address(props) {
     const address = props.address;
 
     return (
-        <View>
+        <View style={SpecificStyle.address}>
             <Text>City {address.city}</Text>
             <Text>State {address.state}</Text>
             <Text>Pincode</Text>
